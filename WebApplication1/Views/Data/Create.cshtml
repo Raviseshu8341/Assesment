@@ -1,0 +1,290 @@
+﻿@model As.Core.Model.Details
+@{
+    Layout = null;
+}
+<head>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a10c7f6efa.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="~/js/site.js"></script>
+    <style>
+                body{
+                    font-family:arial;
+                    font-size:16px;
+                    margin:0px 383px 10px 341px;
+                    background:#2793d2;
+                    color:#000;
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-around;
+                    min-height:100vh;
+                }
+                .input_container{
+                    width:600px;
+                    background-color:#fff;
+                    padding:30px;
+                    border-radius:15px;
+                    box-shadow:0 0 25px rgba(0,0,0,0.3);
+                    border:10px solid #41b9ff;
+                }
+                .input_container .input-row{
+                    margin-bottom:12px;
+                }
+                .input_container input:not([type="submit"])
+                .input_container textarea
+                {
+                    width:100%;
+                    margin:0 0 3px;
+                    background-color:#d6d6d6;
+                    color:#000;
+                    padding:10px 15px;
+                    height:50px;
+                    line-height:30px;
+                    font-size:20px;
+                    border-radius:5px;
+                    border:2px solid transparent;
+                    outline:0;
+                    transition:all 0.5s ease-out;
+                }
+                .input_container textarea{
+                    height:100px;
+                    resize:none
+                }
+                .input_container input:not([type="submit"])
+                .input_container textarea:focus{
+                    border-color:#2793d2
+                }
+                *::-webkit-input-placeholder{
+                    opacity:1;
+                    color:#000
+                }
+                .input_container input[type="submit"]{
+                    padding:10px 30px;
+                    font-size:18px;
+                    line-height:30px;
+                    height:50px;
+                    text-align:center;
+                    text-transform:uppercase;
+                    cursor:pointer;
+                    background-color:#2793d2;
+                    color:#fff;
+                    border:0;
+                    transition:all 0.5s ease-out;
+                    border-radius:5px;
+                } 
+                .input_container input[type="submit"]:hover{
+                    background-color:#000
+                }
+                label.error{
+                    font-weight:700;
+                    display:block;
+                    color:#f00;
+                    font-size:14px;
+                }
+                .a{
+                    font-family:arial;
+                    font-size:16px;
+                }
+            </style>
+</head>
+@using (Html.BeginForm("Create", "Data", FormMethod.Post, new { @id = "begin" }))
+{
+    <body>
+            <center>
+                       
+         <div class="input_container">
+             <h1 style="padding-bottom:30px;text-align:center; font-size: 20px;">STUDENT DETEAILS FORM</h1> 
+        <form id="form1">
+           @Html.HiddenFor(model=>model.StudentId)
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">First Name*</label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                        <i class="fa fa-user appointment" style="padding-top:10px;padding-left:15px;"></i>
+                        @Html.TextBoxFor(model => model.FirstName,new{@placeholder="First Name"})<br>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Last Name*</label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                        <i class="fa fa-user appointment" style="padding-top:10px;padding-left:15px;"></i>
+                        @Html.TextBoxFor(model => model.LastName,new{@placeholder="LastName"})<br>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Department*</label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                        <i class="fa fa-building-o" style="padding-top:10px;padding-left:15px;"></i>
+                @Html.DropDownList("Department", new List<SelectListItem>
+            {
+            new SelectListItem{ Text="MPC"},
+            new SelectListItem{ Text="BiPC"},
+            new SelectListItem{ Text="MEC"},
+            new SelectListItem{Text="CEC"},
+            }, "----Department----")
+            </div>
+            </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Age*</label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                        <i class="fa fa-child" style="padding-top:10px;padding-left:15px;"></i>
+                        @Html.TextBoxFor(model => model.Age,new{@placeholder="Age"})<br>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Class*</label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                        <i class="fa fa-screen-users" style="padding-top:10px;padding-left:15px;"></i>
+                         @Html.DropDownList("Class", new List<SelectListItem>
+            {
+            new SelectListItem{ Text="VI"},
+            new SelectListItem{ Text="VII"},
+            new SelectListItem{ Text="VIII"},
+            new SelectListItem{ Text="IX"},
+            new SelectListItem{ Text="X"},
+            new SelectListItem{ Text="XI"},
+            new SelectListItem{ Text="XII"},
+            }, "----Class----")
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Gender* </label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                <label> @Html.RadioButtonFor(a=> a.Gender,"Male")Male</label>
+                <label>@Html.RadioButtonFor(a => a.Gender,"Female")Female</label>
+                <label>@Html.RadioButtonFor(a => a.Gender,"Others")Others</label>
+            </div>
+            </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">year Of Joining*</label>
+                <div class="col-sm-9">
+                    <div class="relative">
+                        <i class="fa fa-calendar-o" style="padding-top:10px;padding-left:15px;"></i>
+                         @Html.DropDownList("YearOfJoining", new List<SelectListItem>
+            {
+            new SelectListItem{ Text="2016"},
+            new SelectListItem{ Text="2017"},
+            new SelectListItem{ Text="2018"},
+            new SelectListItem{ Text="2019"},
+            new SelectListItem{ Text="2020"},
+            new SelectListItem{ Text="2021"},
+            new SelectListItem{ Text="2022"},
+            }, "----Year Of Joining----")
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Location</label>
+                <div class="col-sm-9 location">
+                    @Html.DropDownList("LocationId", new SelectList(ViewBag.Location, "LocationId", "Location"), "Select Location")
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" onclick="Submit()">Submit</button><br>
+            </div>     
+        </form>
+        </div>
+         </center>
+    </body>
+}
+<script>
+    $().ready(function () {
+        $("#begin").validate({
+            rules:
+            {
+                FirstName:
+                {
+                    required: true,
+                    lettersonly: true,
+                },
+                LastName:
+                {
+                    required: true,
+                    lettersonly: true,
+                },
+                Department:
+                {
+                    required: true,
+                },
+                Age:
+                {
+                    required: true,
+                },
+                Class:
+                {
+                    required: true,
+                },
+                Gender:
+                {
+                    required: true,
+                },
+                YearOfJoining:
+                {
+                    required: true,
+                },
+                LocationId:
+                {
+                    required: true,
+                },
+            },
+            messages:
+            {
+                FirstName:
+                {
+                    required: " Please enter a FirstName",
+                    lettersonly: "Only alphabets are valid"
+                },
+                LastName:
+                {
+                    required: " Please enter a LastName",
+                    lettersonly: "Only alphabets are valid"
+                },
+                Department:
+                {
+                    required: "Please enter the Department",
+                },
+                Age:
+                {
+                    required: "Please enter the Age",
+                },
+                Class:
+                {
+                    required: "Please enter the Class",
+                },
+                Gender:
+                {
+                    required: "please select any Gender",
+                },
+                YearOfJoining:
+                {
+                    required: " Please enter a YearOfJoining",
+                },
+                LocationId:
+                {
+                    required: " Please enter a Location", 
+                },
+            }
+        });
+    });
+    function Submit() {
+        if ($("#begin").validate()) {
+            $("#begin").submit();
+        }
+    }
+</script>
+
